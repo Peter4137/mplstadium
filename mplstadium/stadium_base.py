@@ -1,16 +1,14 @@
 import abc
-from typing import Tuple, Union
+from typing import Tuple
+
 import numpy as np
 from matplotlib import pyplot as plt
-from mpl_toolkits.mplot3d import Axes3D
 
 
 class StadiumBase(abc.ABC):
+    """A base class to represent a stadium-shaped track and facilitate plots of and on its surface.
 
-    """
-    A base class to represent a stadium-shaped track and facilitate plots of and on its surface.
-
-    Attributes
+    Attributes:
     ----------
     length : float
         The length of the track.
@@ -26,10 +24,10 @@ class StadiumBase(abc.ABC):
     """
 
     def __init__(
-        self, 
+        self,
         length: float,
         radius: float,
-        width: float, 
+        width: float,
         straight_banking: float,
         curve_banking: float,
     ):
@@ -45,10 +43,10 @@ class StadiumBase(abc.ABC):
 
     def _banking(self, s) -> float:
         return np.pi * (
-            ((self.straight_banking + self.curve_banking) / 2) 
+            ((self.straight_banking + self.curve_banking) / 2)
             - (self.curve_banking - self.straight_banking)/2 * np.cos(4 * (s / self.length) * np.pi)
         ) / 180
-    
+
     def _transform_xyz(self, s, d) -> Tuple[float, float, float]:
         s = s % self.length
         banking_angle = self._banking(s)
@@ -56,49 +54,49 @@ class StadiumBase(abc.ABC):
         d_z = d * np.sin(banking_angle)
         if s < self._q_straight:
             return (
-                s, 
-                -1 * (self.radius + d_xy), 
+                s,
+                -1 * (self.radius + d_xy),
                 d_z
             )
         elif s < self._q_straight + np.pi * self.radius:
             angle = (s - self._q_straight) / self.radius
             return (
-                self._q_straight + (self.radius + d_xy) * np.sin(angle), 
-                -1 * (self.radius + d_xy) * np.cos(angle), 
+                self._q_straight + (self.radius + d_xy) * np.sin(angle),
+                -1 * (self.radius + d_xy) * np.cos(angle),
                 d_z
             )
         elif s < 3 * self._q_straight + np.pi * self.radius:
             return (
-                2 * self._q_straight + np.pi * self.radius - s, 
-                self.radius + d_xy, 
+                2 * self._q_straight + np.pi * self.radius - s,
+                self.radius + d_xy,
                 d_z
             )
         elif s < 3 * self._q_straight + 2 * np.pi * self.radius:
             angle = (s - (3 * self._q_straight + np.pi * self.radius)) / self.radius
             return (
-                -1 * self._q_straight - (self.radius + d_xy) * np.sin(angle), 
-                (self.radius + d_xy) * np.cos(angle), 
+                -1 * self._q_straight - (self.radius + d_xy) * np.sin(angle),
+                (self.radius + d_xy) * np.cos(angle),
                 d_z
             )
         else:
             return (
-                s - 4 * self._q_straight - 2 * np.pi * self.radius, 
-                -1 * (self.radius + d_xy), 
+                s - 4 * self._q_straight - 2 * np.pi * self.radius,
+                -1 * (self.radius + d_xy),
                 d_z
             )
 
-    @abc.abstractmethod   
+    @abc.abstractmethod
     def _init_ax(self, ax: plt.Axes):
         pass
 
     @abc.abstractmethod
     def draw(self) -> Tuple[plt.Figure, plt.Axes]:
         pass
-        
+
     @abc.abstractmethod
     def trajectory(self):
         pass
-    
+
     @abc.abstractmethod
     def scatter(self):
         pass

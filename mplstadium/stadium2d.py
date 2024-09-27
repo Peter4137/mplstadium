@@ -1,17 +1,16 @@
 from typing import Tuple
 
-from .stadium_base import StadiumBase
+import matplotlib
 import numpy as np
 from matplotlib import pyplot as plt
-import matplotlib
+
+from .stadium_base import StadiumBase
 
 
 class Stadium2D(StadiumBase):
+    """A class to represent a stadium-shaped track and facilitate plots of and on its surface in 2D.
 
-    """
-    A class to represent a stadium-shaped track and facilitate plots of and on its surface in 2D.
-
-    Attributes
+    Attributes:
     ----------
     length : float
         The length of the track.
@@ -25,7 +24,7 @@ class Stadium2D(StadiumBase):
         The banking angle (deg) of the curved sections of the track.
 
     """
-        
+
     def _init_ax(self, ax: plt.Axes):
         self._ax = ax
         if self._ax is None:
@@ -35,16 +34,15 @@ class Stadium2D(StadiumBase):
     def draw(
         self,
         ax: plt.Axes = None,
-        line_args: list = [],
-        line_kwargs: dict = {},
-        fill_args: list = [],
-        fill_kwargs: dict = {},
+        line_args: list = None,
+        line_kwargs: dict = None,
+        fill_args: list = None,
+        fill_kwargs: dict = None,
         s_points: int = 250,
         d_points: int = 9,
     ) -> Tuple[plt.Figure, plt.Axes]:
-        """
-        Plot the stadium in 2D.
-        
+        """Plot the stadium in 2D.
+
         Parameters
         ----------
         ax : plt.Axes
@@ -73,9 +71,9 @@ class Stadium2D(StadiumBase):
         ]
 
         for line in lines:
-            self._ax.plot(line[:, 0], line[:, 1], *line_args, **line_kwargs)
+            self._ax.plot(line[:, 0], line[:, 1], *line_args or [], **line_kwargs)
 
-        self._ax.fill(lines[-1][:, 0], lines[-1][:, 1], *fill_args, **fill_kwargs)
+        self._ax.fill(lines[-1][:, 0], lines[-1][:, 1], *fill_args or [], **fill_kwargs)
         self._ax.fill(lines[0][:, 0], lines[0][:, 1], color="white", alpha=1)
 
 
@@ -84,7 +82,7 @@ class Stadium2D(StadiumBase):
         else:
             return self._ax
 
-    
+
     def trajectory(
         self,
         s_: np.ndarray,
@@ -92,9 +90,8 @@ class Stadium2D(StadiumBase):
         *args,
         **kwargs,
     ) -> matplotlib.lines.Line2D:
-        """
-        Plot a trajectory on the stadium.
-        
+        """Plot a trajectory on the stadium.
+
         Parameters
         ----------
         s_ : np.ndarray
@@ -107,7 +104,7 @@ class Stadium2D(StadiumBase):
         kwargs : dict
             Additional keyword arguments to pass to the plot
             function.
-        
+
         """
         points = np.array([
             self._transform_xyz(s_i, d_i) for s_i, d_i in zip(s_, d_)
@@ -115,7 +112,7 @@ class Stadium2D(StadiumBase):
 
         return self._ax.plot(points[:, 0], points[:, 1], *args, **kwargs)
 
-    
+
     def scatter(
         self,
         s_: np.ndarray,
@@ -123,8 +120,7 @@ class Stadium2D(StadiumBase):
         *args,
         **kwargs,
     ) -> matplotlib.collections.PathCollection:
-        """
-        Scatter points on the stadium.
+        """Scatter points on the stadium.
 
         Parameters
         ----------
@@ -138,7 +134,7 @@ class Stadium2D(StadiumBase):
         kwargs : dict
             Additional keyword arguments to pass to the scatter
             function.
-        
+
         """
         points = np.array([
             self._transform_xyz(s_i, d_i) for s_i, d_i in zip(s_, d_)

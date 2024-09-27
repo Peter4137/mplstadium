@@ -1,5 +1,5 @@
-from stadium2d import Stadium2D
-from stadium3d import Stadium3D
+from .stadium2d import Stadium2D
+from .stadium3d import Stadium3D
 
 
 class OlympicVelodrome2D(Stadium2D):

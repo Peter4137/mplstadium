@@ -1,6 +1,6 @@
+import matplotlib
 import matplotlib.pyplot
 import pytest
-import matplotlib
 
 from mplstadium import Stadium3D
 
@@ -18,9 +18,9 @@ def test_stadium3d_draw():
         straight_banking=10,
         curve_banking=20,
     )
-    
+
     stadium.draw(ax, color="blue", edgecolor="white", alpha=0.5)
-    
+
     assert isinstance(fig, matplotlib.figure.Figure)
     assert isinstance(ax, matplotlib.axes.Axes)
 
@@ -39,9 +39,9 @@ def test_stadium3d_scatter():
 
     tangential = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90]
     radial = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-    
+
     fig, ax = stadium.draw(color="blue", edgecolor="white", alpha=0.5)
-    
+
     stadium.scatter(tangential, radial, s=50, c="red", alpha=1)
 
     assert isinstance(fig, matplotlib.figure.Figure)
@@ -63,9 +63,9 @@ def test_stadium3d_trajectory():
 
     tangential = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90]
     radial = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-    
+
     fig, ax = stadium.draw(color="blue", edgecolor="white", alpha=0.5)
-    
+
     stadium.trajectory(tangential, radial, c="red", lw=5, alpha=1)
 
     assert isinstance(fig, matplotlib.figure.Figure)

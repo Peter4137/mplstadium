@@ -1,15 +1,15 @@
-from .stadium_base import StadiumBase
+import matplotlib
 import numpy as np
 from matplotlib import pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
-import matplotlib
+
+from .stadium_base import StadiumBase
+
 
 class Stadium3D(StadiumBase):
+    """A class to represent a stadium-shaped track and facilitate plots of and on its surface in 3D.
 
-    """
-    A class to represent a stadium-shaped track and facilitate plots of and on its surface in 3D.
-
-    Attributes
+    Attributes:
     ----------
     length : float
         The length of the track.
@@ -23,7 +23,7 @@ class Stadium3D(StadiumBase):
         The banking angle (deg) of the curved sections of the track.
 
     """
-        
+
     def _init_ax(self, ax: Axes3D):
         self._ax = ax
         if self._ax is None:
@@ -38,9 +38,8 @@ class Stadium3D(StadiumBase):
         *args,
         **kwargs,
     ) -> tuple[plt.Figure, Axes3D]:
-        """
-        Plot the stadium in 3D.
-        
+        """Plot the stadium in 3D.
+
         Parameters
         ----------
         ax : plt.Axes
@@ -69,9 +68,9 @@ class Stadium3D(StadiumBase):
         ])
 
         self._ax.plot_surface(
-            points[:,:,0], 
-            points[:,:,1], 
-            points[:,:,2], 
+            points[:,:,0],
+            points[:,:,1],
+            points[:,:,2],
             *args,
             **kwargs,
         )
@@ -80,7 +79,7 @@ class Stadium3D(StadiumBase):
             return self._fig, self._ax
         else:
             return self._ax
-    
+
     def trajectory(
         self,
         s_: np.ndarray,
@@ -88,9 +87,8 @@ class Stadium3D(StadiumBase):
         *args,
         **kwargs,
     ) -> matplotlib.lines.Line2D:
-        """
-        Plot a trajectory on the stadium.
-        
+        """Plot a trajectory on the stadium.
+
         Parameters
         ----------
         s : np.ndarray
@@ -103,7 +101,7 @@ class Stadium3D(StadiumBase):
         kwargs : dict
             Additional keyword arguments to pass to the plot
             function.
-        
+
         """
         points = np.array([
             self._transform_xyz(s_i, d_i) for s_i, d_i in zip(s_, d)
@@ -118,8 +116,7 @@ class Stadium3D(StadiumBase):
         *args,
         **kwargs,
     ) -> matplotlib.collections.PathCollection:
-        """
-        Scatter points on the stadium.
+        """Scatter points on the stadium.
 
         Parameters
         ----------
@@ -133,7 +130,7 @@ class Stadium3D(StadiumBase):
         kwargs : dict
             Additional keyword arguments to pass to the scatter
             function.
-        
+
         """
         points = np.array([
             self._transform_xyz(s_i, d_i) for s_i, d_i in zip(s_, d_)
