@@ -71,9 +71,9 @@ class Stadium2D(StadiumBase):
         ]
 
         for line in lines:
-            self._ax.plot(line[:, 0], line[:, 1], *line_args or [], **line_kwargs)
+            self._ax.plot(line[:, 0], line[:, 1], *line_args or [], **line_kwargs or {})
 
-        self._ax.fill(lines[-1][:, 0], lines[-1][:, 1], *fill_args or [], **fill_kwargs)
+        self._ax.fill(lines[-1][:, 0], lines[-1][:, 1], *fill_args or [], **fill_kwargs or {})
         self._ax.fill(lines[0][:, 0], lines[0][:, 1], color="white", alpha=1)
 
 
