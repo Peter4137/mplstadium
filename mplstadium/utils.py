@@ -3,6 +3,9 @@ from .stadium3d import Stadium3D
 
 
 class OlympicVelodrome2D(Stadium2D):
+    """
+    Wrapper class for an Olympic Velodrome in 2D.
+    """
     def __init__(self):
         super().__init__(
             length=250,
@@ -13,6 +16,9 @@ class OlympicVelodrome2D(Stadium2D):
         )
 
 class OlympicVelodrome3D(Stadium3D):
+    """
+    Wrapper class for an Olympic Velodrome in 3D.
+    """
     def __init__(self):
         super().__init__(
             length=250,
@@ -23,6 +29,9 @@ class OlympicVelodrome3D(Stadium3D):
         )
 
 class OutdoorAthleticsTrack2D(Stadium2D):
+    """
+    Wrapper class for an Outdoor Athletics Track in 2D.
+    """
     def __init__(self):
         super().__init__(
             length=400,
@@ -33,6 +42,10 @@ class OutdoorAthleticsTrack2D(Stadium2D):
         )
 
 class OutdoorAthleticsTrack3D(Stadium3D):
+    """
+    Wrapper class for an Outdoor Athletics Track in 3D.
+    """
+
     def __init__(self):
         super().__init__(
             length=400,
@@ -43,6 +56,9 @@ class OutdoorAthleticsTrack3D(Stadium3D):
         )
 
 class IndoorAthleticsTrack2D(Stadium2D):
+    """
+    Wrapper class for an Indoor Athletics Track in 2D.
+    """
     def __init__(self):
         super().__init__(
             length=200,
@@ -53,6 +69,9 @@ class IndoorAthleticsTrack2D(Stadium2D):
         )
 
 class IndoorAthleticsTrack3D(Stadium3D):
+    """
+    Wrapper class for an Indoor Athletics Track in 3D.
+    """
     def __init__(self):
         super().__init__(
             length=200,

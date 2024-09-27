@@ -11,7 +11,7 @@ class Stadium2D(StadiumBase):
     """A class to represent a stadium-shaped track and facilitate plots of and on its surface in 2D.
 
     Attributes:
-    ----------
+    -----------
     length : float
         The length of the track.
     radius : float
