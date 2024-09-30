@@ -56,7 +56,6 @@ class Stadium2D(StadiumBase):
         self._ax.fill(outer[:, 0], outer[:, 1], color=self.surface_color, alpha=self.surface_alpha)
         self._ax.fill(inner[:, 0], inner[:, 1], color="white")
 
-
     def _draw_infield(self, s_points=250):
         all_s = np.linspace(0, self.length, s_points)
 
@@ -97,7 +96,6 @@ class Stadium2D(StadiumBase):
                 alpha=self.line_alpha,
             )
 
-
     def trajectory(
         self,
         s_: np.ndarray,
@@ -121,12 +119,9 @@ class Stadium2D(StadiumBase):
             function.
 
         """
-        points = np.array([
-            self._transform_xyz(s_i, d_i) for s_i, d_i in zip(s_, d_)
-        ])
+        points = np.array([self._transform_xyz(s_i, d_i) for s_i, d_i in zip(s_, d_)])
 
         return self._ax.plot(points[:, 0], points[:, 1], *args, **kwargs)
-
 
     def scatter(
         self,
@@ -151,8 +146,6 @@ class Stadium2D(StadiumBase):
             function.
 
         """
-        points = np.array([
-            self._transform_xyz(s_i, d_i) for s_i, d_i in zip(s_, d_)
-        ])
+        points = np.array([self._transform_xyz(s_i, d_i) for s_i, d_i in zip(s_, d_)])
 
         return self._ax.scatter(points[:, 0], points[:, 1], *args, **kwargs)

@@ -24,6 +24,7 @@ def test_olympic_velodrome():
     assert velodrome3d.straight_banking == 12
     assert velodrome3d.curve_banking == 45
 
+
 def test_outdoor_athletics_track():
     track2d = OutdoorAthleticsTrack2D()
     track3d = OutdoorAthleticsTrack3D()
@@ -39,6 +40,7 @@ def test_outdoor_athletics_track():
     assert track3d.width == 10
     assert track3d.straight_banking == 0
     assert track3d.curve_banking == 0
+
 
 def test_indoor_athletics_track():
     track2d = IndoorAthleticsTrack2D()

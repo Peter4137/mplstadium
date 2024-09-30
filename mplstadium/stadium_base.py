@@ -122,6 +122,7 @@ class StadiumBase(abc.ABC):
             - (self.curve_banking - self.straight_banking)/2 * np.cos(4 * (s / self.length) * np.pi)
         ) / 180
 
+
     def _straight_1(self, s, d_xy, d_z) -> Tuple[float, float, float]:
         return np.array([s, -1 * (self.radius + d_xy), d_z])
 

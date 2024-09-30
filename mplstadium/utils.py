@@ -7,6 +7,7 @@ class OlympicVelodrome2D(Stadium2D):
     Wrapper class for an Olympic Velodrome in 2D.
     """
     def __init__(self, *args, **kwargs):
+
         super().__init__(
             length=250,
             radius=24.37,
@@ -23,12 +24,14 @@ class OlympicVelodrome2D(Stadium2D):
             *args,
             **kwargs,
         )
+
 
 class OlympicVelodrome3D(Stadium3D):
     """
     Wrapper class for an Olympic Velodrome in 3D.
     """
     def __init__(self, *args, **kwargs):
+
         super().__init__(
             length=250,
             radius=24.37,
@@ -46,11 +49,13 @@ class OlympicVelodrome3D(Stadium3D):
             **kwargs,
         )
 
+
 class OutdoorAthleticsTrack2D(Stadium2D):
     """
     Wrapper class for an Outdoor Athletics Track in 2D.
     """
     def __init__(self, *args, **kwargs):
+
         super().__init__(
             length=400,
             radius=36.5,
@@ -64,6 +69,7 @@ class OutdoorAthleticsTrack2D(Stadium2D):
             *args,
             **kwargs,
         )
+
 
 class OutdoorAthleticsTrack3D(Stadium3D):
     """
@@ -85,6 +91,7 @@ class OutdoorAthleticsTrack3D(Stadium3D):
             **kwargs,
         )
 
+
 class IndoorAthleticsTrack2D(Stadium2D):
     """
     Wrapper class for an Indoor Athletics Track in 2D.
@@ -103,11 +110,13 @@ class IndoorAthleticsTrack2D(Stadium2D):
             **kwargs,
         )
 
+
 class IndoorAthleticsTrack3D(Stadium3D):
     """
     Wrapper class for an Indoor Athletics Track in 3D.
     """
     def __init__(self, *args, **kwargs):
+
         super().__init__(
             length=200,
             radius=18.5,

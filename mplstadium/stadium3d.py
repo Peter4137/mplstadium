@@ -65,6 +65,7 @@ class Stadium3D(StadiumBase):
             color=self.surface_color,
             edgecolor=self.surface_color,
             zorder=-2,
+
         )
 
     def _draw_infield(self, s_points=250):
@@ -157,9 +158,7 @@ class Stadium3D(StadiumBase):
             function.
 
         """
-        points = np.array([
-            self._transform_xyz(s_i, d_i) for s_i, d_i in zip(s_, d)
-        ])
+        points = np.array([self._transform_xyz(s_i, d_i) for s_i, d_i in zip(s_, d)])
 
         return self._ax.plot(points[:, 0], points[:, 1], points[:, 2], *args, **kwargs)
 
@@ -186,8 +185,6 @@ class Stadium3D(StadiumBase):
             function.
 
         """
-        points = np.array([
-            self._transform_xyz(s_i, d_i) for s_i, d_i in zip(s_, d_)
-        ])
+        points = np.array([self._transform_xyz(s_i, d_i) for s_i, d_i in zip(s_, d_)])
 
         return self._ax.scatter(points[:, 0], points[:, 1], points[:, 2], *args, **kwargs)
