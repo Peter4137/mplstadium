@@ -1,5 +1,7 @@
 **A Python plotting library to visualize stadium data**
 
+![Lint and Test](https://github.com/Peter4137/mplstadium/actions/workflows/action.yml/badge.svg)
+
 # Quick start
 
 Install the package using `pip` (or `pip3`).
