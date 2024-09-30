@@ -46,7 +46,7 @@ class Stadium2D(StadiumBase):
 
     def _draw_stadium(
         self,
-        s_points = 250,
+        s_points=250,
     ):
         all_s = np.linspace(0, self.length, s_points)
 
@@ -66,7 +66,6 @@ class Stadium2D(StadiumBase):
             inner = np.array([self._transform_xyz(s, -1 * self.infield_width) for s in all_s])
             self._ax.fill(inner[:, 0], inner[:, 1], color="white")
 
-
     def _draw_lanes(self, s_points=250) -> List:
         all_s = np.linspace(0, self.length, s_points)
 
@@ -82,9 +81,8 @@ class Stadium2D(StadiumBase):
                 color=color,
                 alpha=self.lane_alpha,
                 linestyle=self.lane_linestyle,
-                lw=self.lane_linewidth
+                lw=self.lane_linewidth,
             )
-
 
     def _draw_lines(self) -> List:
         for s, color in zip(self.line_distances, self.line_colors):

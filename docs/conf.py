@@ -7,8 +7,6 @@ import sys
 
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
-import os
-import sys
 
 project = "mplstadium"
 copyright = "2024, Peter4137"

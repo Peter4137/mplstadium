@@ -6,9 +6,11 @@ class OlympicVelodrome2D(Stadium2D):
     """
     Wrapper class for an Olympic Velodrome in 2D.
     """
-    def __init__(self, *args, **kwargs):
 
+    def __init__(self, *args, **kwargs):
         super().__init__(
+            *args,
+            **kwargs,
             length=250,
             radius=24.37,
             width=8,
@@ -21,8 +23,6 @@ class OlympicVelodrome2D(Stadium2D):
             infield_width=2,
             infield_color="blue",
             infield_alpha=0.3,
-            *args,
-            **kwargs,
         )
 
 
@@ -30,9 +30,11 @@ class OlympicVelodrome3D(Stadium3D):
     """
     Wrapper class for an Olympic Velodrome in 3D.
     """
-    def __init__(self, *args, **kwargs):
 
+    def __init__(self, *args, **kwargs):
         super().__init__(
+            *args,
+            **kwargs,
             length=250,
             radius=24.37,
             width=8,
@@ -45,8 +47,6 @@ class OlympicVelodrome3D(Stadium3D):
             infield_width=2,
             infield_color="blue",
             infield_alpha=0.3,
-            *args,
-            **kwargs,
         )
 
 
@@ -54,9 +54,11 @@ class OutdoorAthleticsTrack2D(Stadium2D):
     """
     Wrapper class for an Outdoor Athletics Track in 2D.
     """
-    def __init__(self, *args, **kwargs):
 
+    def __init__(self, *args, **kwargs):
         super().__init__(
+            *args,
+            **kwargs,
             length=400,
             radius=36.5,
             width=10,
@@ -66,8 +68,6 @@ class OutdoorAthleticsTrack2D(Stadium2D):
             lane_colors=["white"] * 9,
             line_distances=[42.66, 242.66],
             line_colors=["white"] * 2,
-            *args,
-            **kwargs,
         )
 
 
@@ -78,6 +78,8 @@ class OutdoorAthleticsTrack3D(Stadium3D):
 
     def __init__(self, *args, **kwargs):
         super().__init__(
+            *args,
+            **kwargs,
             length=400,
             radius=36.5,
             width=10,
@@ -87,8 +89,6 @@ class OutdoorAthleticsTrack3D(Stadium3D):
             lane_colors=["white"] * 9,
             line_distances=[42.66, 242.66],
             line_colors=["white"] * 2,
-            *args,
-            **kwargs,
         )
 
 
@@ -99,6 +99,8 @@ class IndoorAthleticsTrack2D(Stadium2D):
 
     def __init__(self, *args, **kwargs):
         super().__init__(
+            *args,
+            **kwargs,
             length=200,
             radius=18.5,
             width=7.5,
@@ -106,8 +108,6 @@ class IndoorAthleticsTrack2D(Stadium2D):
             curve_banking=10,
             lane_widths=[1.25] * 6,
             lane_colors=["white"] * 7,
-            *args,
-            **kwargs,
         )
 
 
@@ -115,9 +115,11 @@ class IndoorAthleticsTrack3D(Stadium3D):
     """
     Wrapper class for an Indoor Athletics Track in 3D.
     """
-    def __init__(self, *args, **kwargs):
 
+    def __init__(self, *args, **kwargs):
         super().__init__(
+            *args,
+            **kwargs,
             length=200,
             radius=18.5,
             width=7.5,
@@ -125,6 +127,4 @@ class IndoorAthleticsTrack3D(Stadium3D):
             curve_banking=10,
             lane_widths=[1.25] * 6,
             lane_colors=["white"] * 7,
-            *args,
-            **kwargs,
         )

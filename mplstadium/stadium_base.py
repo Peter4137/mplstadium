@@ -8,7 +8,7 @@ from matplotlib import pyplot as plt
 
 class StadiumBase(abc.ABC):
     """
-    
+
     An abstract base class to represent a stadium-shaped track and facilitate plots of and on its surface.
 
     Attributes:
@@ -77,9 +77,7 @@ class StadiumBase(abc.ABC):
     ):
         assert len(lane_colors) == len(lane_widths) + 1, "Must have one more lane colors than lane widths"
         assert len(line_distances) == len(line_colors), "Must have same number of line distances and line colors"
-        assert (
-            isinstance(infield_width, (float, int)) or infield_width == "all"
-        ), "Infield width must be float or \"all\""
+        assert isinstance(infield_width, (float, int)) or infield_width == "all", 'Infield width must be float or "all"'
 
         self.length = length
         self.radius = radius
@@ -111,49 +109,42 @@ class StadiumBase(abc.ABC):
         f: callable,
     ):
         def _step(s, d_xy, d_z):
-            return np.heaviside(s - start, 1) * f(s, d_xy, d_z) -  np.heaviside(s - end, 1) * f(s, d_xy, d_z)
+            return np.heaviside(s - start, 1) * f(s, d_xy, d_z) - np.heaviside(s - end, 1) * f(s, d_xy, d_z)
 
         return _step
 
     def _banking(self, s, d) -> float:
         multiplier = np.heaviside(d, 1)
-        return multiplier * np.pi * (
-            ((self.straight_banking + self.curve_banking) / 2)
-            - (self.curve_banking - self.straight_banking)/2 * np.cos(4 * (s / self.length) * np.pi)
-        ) / 180
-
+        return (
+            multiplier
+            * np.pi
+            * (
+                ((self.straight_banking + self.curve_banking) / 2)
+                - (self.curve_banking - self.straight_banking) / 2 * np.cos(4 * (s / self.length) * np.pi)
+            )
+            / 180
+        )
 
     def _straight_1(self, s, d_xy, d_z) -> Tuple[float, float, float]:
         return np.array([s, -1 * (self.radius + d_xy), d_z])
 
     def _curve_1(self, s, d_xy, d_z) -> Tuple[float, float, float]:
         angle = (s - self._q_straight) / self.radius
-        return np.array([
-            self._q_straight + (self.radius + d_xy) * np.sin(angle),
-            -1 * (self.radius + d_xy) * np.cos(angle),
-            d_z
-        ])
+        return np.array(
+            [self._q_straight + (self.radius + d_xy) * np.sin(angle), -1 * (self.radius + d_xy) * np.cos(angle), d_z]
+        )
+
     def straight_2(self, s, d_xy, d_z) -> Tuple[float, float, float]:
-        return np.array([
-            2 * self._q_straight + np.pi * self.radius - s,
-            self.radius + d_xy,
-            d_z
-        ])
+        return np.array([2 * self._q_straight + np.pi * self.radius - s, self.radius + d_xy, d_z])
 
     def curve_2(self, s, d_xy, d_z) -> Tuple[float, float, float]:
         angle = (s - (3 * self._q_straight + np.pi * self.radius)) / self.radius
-        return np.array([
-            -1 * self._q_straight - (self.radius + d_xy) * np.sin(angle),
-            (self.radius + d_xy) * np.cos(angle),
-            d_z
-        ])
+        return np.array(
+            [-1 * self._q_straight - (self.radius + d_xy) * np.sin(angle), (self.radius + d_xy) * np.cos(angle), d_z]
+        )
 
     def straight_3(self, s, d_xy, d_z) -> Tuple[float, float, float]:
-        return np.array([
-            s - 4 * self._q_straight - 2 * np.pi * self.radius,
-            -1 * (self.radius + d_xy),
-            d_z
-        ])
+        return np.array([s - 4 * self._q_straight - 2 * np.pi * self.radius, -1 * (self.radius + d_xy), d_z])
 
     def _transform_xyz(self, s, d):
         s = s % self.length
@@ -167,24 +158,14 @@ class StadiumBase(abc.ABC):
             self._q_straight + np.pi * self.radius,
             3 * self._q_straight + np.pi * self.radius,
             3 * self._q_straight + 2 * np.pi * self.radius,
-            self.length
+            self.length,
         ]
 
-        section_functions = [
-            self._straight_1,
-            self._curve_1,
-            self.straight_2,
-            self.curve_2,
-            self.straight_3
-        ]
+        section_functions = [self._straight_1, self._curve_1, self.straight_2, self.curve_2, self.straight_3]
 
-        sections = [
-            self._step_section(steps[i], steps[i + 1], section_functions[i]) for i, _ in enumerate(steps[:-1])
-        ]
+        sections = [self._step_section(steps[i], steps[i + 1], section_functions[i]) for i, _ in enumerate(steps[:-1])]
 
-        return np.sum(
-            [section(s, d_xy, d_z) for section in sections], axis=0
-        )
+        return np.sum([section(s, d_xy, d_z) for section in sections], axis=0)
 
     @abc.abstractmethod
     def _init_ax(self, ax: plt.Axes):

@@ -46,7 +46,7 @@ class Stadium3D(StadiumBase):
 
     def _draw_stadium(
         self,
-        s_points = 250,
+        s_points=250,
     ):
         s = np.linspace(0, self.length, s_points)
         d = np.linspace(0, self.width, 3)
@@ -56,29 +56,32 @@ class Stadium3D(StadiumBase):
 
         tri = matplotlib.tri.Triangulation(s, d)
 
-        x,y,z = self._transform_xyz(s, d)
+        x, y, z = self._transform_xyz(s, d)
 
         self._ax.plot_trisurf(
-            x,y,z,
+            x,
+            y,
+            z,
             triangles=tri.triangles,
             alpha=self.surface_alpha,
             color=self.surface_color,
             edgecolor=self.surface_color,
             zorder=-2,
-
         )
 
     def _draw_infield(self, s_points=250):
         s = np.linspace(0, self.length, s_points)
         if self.infield_width == "all":
-            points = np.array([
-                [(0,0,0) for _ in s],
-                [self._transform_xyz(s_, 0) for s_ in s],
-            ])
+            points = np.array(
+                [
+                    [(0, 0, 0) for _ in s],
+                    [self._transform_xyz(s_, 0) for s_ in s],
+                ]
+            )
             self._ax.plot_surface(
-                points[:,:,0],
-                points[:,:,1],
-                points[:,:,2],
+                points[:, :, 0],
+                points[:, :, 1],
+                points[:, :, 2],
                 color=self.infield_color,
                 alpha=self.infield_alpha,
                 edgecolors=matplotlib.colors.to_rgba(self.infield_color, self.infield_alpha),
@@ -90,17 +93,18 @@ class Stadium3D(StadiumBase):
             s, d = s.flatten(), d.flatten()
             tri = matplotlib.tri.Triangulation(s, d)
 
-            x,y,z = self._transform_xyz(s, d)
+            x, y, z = self._transform_xyz(s, d)
 
             self._ax.plot_trisurf(
-                x,y,z,
+                x,
+                y,
+                z,
                 triangles=tri.triangles,
                 alpha=self.infield_alpha,
                 color=self.infield_color,
                 edgecolor=self.infield_color,
                 zorder=-2,
             )
-
 
     def _draw_lanes(self, s_points=250) -> List:
         all_s = np.linspace(0, self.length, s_points)
@@ -121,7 +125,6 @@ class Stadium3D(StadiumBase):
                 lw=self.lane_linewidth,
                 zorder=-1,
             )
-
 
     def _draw_lines(self) -> List:
         for s, color in zip(self.line_distances, self.line_colors):
