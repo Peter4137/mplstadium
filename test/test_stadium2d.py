@@ -6,6 +6,7 @@ from mplstadium import Stadium2D
 
 matplotlib.use("Agg")
 
+
 @pytest.mark.mpl_image_compare(baseline_dir="baseline")
 def test_stadium2d_draw():
     fig, ax = matplotlib.pyplot.subplots()
@@ -24,6 +25,7 @@ def test_stadium2d_draw():
     assert isinstance(ax, matplotlib.axes.Axes)
 
     return fig
+
 
 @pytest.mark.mpl_image_compare(baseline_dir="baseline")
 def test_stadium2d_scatter():
@@ -69,8 +71,3 @@ def test_stadium2d_trajectory():
     assert isinstance(ax, matplotlib.axes.Axes)
 
     return fig
-
-
-
-
-
