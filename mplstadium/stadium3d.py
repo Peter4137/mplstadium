@@ -63,14 +63,12 @@ class Stadium3D(StadiumBase):
         s = np.linspace(0, self.length, s_points)
         d = np.linspace(0, self.width, d_points)
 
-        points = np.array([
-            [self._transform_xyz(s_, d_) for s_ in s] for d_ in d
-        ])
+        points = np.array([[self._transform_xyz(s_, d_) for s_ in s] for d_ in d])
 
         self._ax.plot_surface(
-            points[:,:,0],
-            points[:,:,1],
-            points[:,:,2],
+            points[:, :, 0],
+            points[:, :, 1],
+            points[:, :, 2],
             *args,
             **kwargs,
         )
@@ -103,9 +101,7 @@ class Stadium3D(StadiumBase):
             function.
 
         """
-        points = np.array([
-            self._transform_xyz(s_i, d_i) for s_i, d_i in zip(s_, d)
-        ])
+        points = np.array([self._transform_xyz(s_i, d_i) for s_i, d_i in zip(s_, d)])
 
         return self._ax.plot(points[:, 0], points[:, 1], points[:, 2], *args, **kwargs)
 
@@ -132,8 +128,6 @@ class Stadium3D(StadiumBase):
             function.
 
         """
-        points = np.array([
-            self._transform_xyz(s_i, d_i) for s_i, d_i in zip(s_, d_)
-        ])
+        points = np.array([self._transform_xyz(s_i, d_i) for s_i, d_i in zip(s_, d_)])
 
         return self._ax.scatter(points[:, 0], points[:, 1], points[:, 2], *args, **kwargs)

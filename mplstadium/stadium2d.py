@@ -66,9 +66,7 @@ class Stadium2D(StadiumBase):
         all_s = np.linspace(0, self.length, s_points)
         all_d = np.linspace(0, self.width, d_points)
 
-        lines = [
-            np.array([self._transform_xyz(s, d) for s in all_s]) for d in all_d
-        ]
+        lines = [np.array([self._transform_xyz(s, d) for s in all_s]) for d in all_d]
 
         for line in lines:
             self._ax.plot(line[:, 0], line[:, 1], *line_args or [], **line_kwargs or {})
@@ -76,12 +74,10 @@ class Stadium2D(StadiumBase):
         self._ax.fill(lines[-1][:, 0], lines[-1][:, 1], *fill_args or [], **fill_kwargs or {})
         self._ax.fill(lines[0][:, 0], lines[0][:, 1], color="white", alpha=1)
 
-
         if self._fig:
             return self._fig, self._ax
         else:
             return self._ax
-
 
     def trajectory(
         self,
@@ -106,12 +102,9 @@ class Stadium2D(StadiumBase):
             function.
 
         """
-        points = np.array([
-            self._transform_xyz(s_i, d_i) for s_i, d_i in zip(s_, d_)
-        ])
+        points = np.array([self._transform_xyz(s_i, d_i) for s_i, d_i in zip(s_, d_)])
 
         return self._ax.plot(points[:, 0], points[:, 1], *args, **kwargs)
-
 
     def scatter(
         self,
@@ -136,8 +129,6 @@ class Stadium2D(StadiumBase):
             function.
 
         """
-        points = np.array([
-            self._transform_xyz(s_i, d_i) for s_i, d_i in zip(s_, d_)
-        ])
+        points = np.array([self._transform_xyz(s_i, d_i) for s_i, d_i in zip(s_, d_)])
 
         return self._ax.scatter(points[:, 0], points[:, 1], *args, **kwargs)

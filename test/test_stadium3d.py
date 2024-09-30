@@ -6,6 +6,7 @@ from mplstadium import Stadium3D
 
 matplotlib.use("Agg")
 
+
 @pytest.mark.mpl_image_compare(baseline_dir="baseline")
 def test_stadium3d_draw():
     fig = matplotlib.pyplot.figure()
@@ -24,8 +25,9 @@ def test_stadium3d_draw():
     assert isinstance(fig, matplotlib.figure.Figure)
     assert isinstance(ax, matplotlib.axes.Axes)
 
-    ax.set_aspect('equal')
+    ax.set_aspect("equal")
     return fig
+
 
 @pytest.mark.mpl_image_compare(baseline_dir="baseline")
 def test_stadium3d_scatter():
@@ -47,7 +49,7 @@ def test_stadium3d_scatter():
     assert isinstance(fig, matplotlib.figure.Figure)
     assert isinstance(ax, matplotlib.axes.Axes)
 
-    ax.set_aspect('equal')
+    ax.set_aspect("equal")
     return fig
 
 
@@ -71,10 +73,5 @@ def test_stadium3d_trajectory():
     assert isinstance(fig, matplotlib.figure.Figure)
     assert isinstance(ax, matplotlib.axes.Axes)
 
-    ax.set_aspect('equal')
+    ax.set_aspect("equal")
     return fig
-
-
-
-
-

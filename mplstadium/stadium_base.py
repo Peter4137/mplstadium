@@ -42,10 +42,14 @@ class StadiumBase(abc.ABC):
         self._fig: plt.Figure = None
 
     def _banking(self, s) -> float:
-        return np.pi * (
-            ((self.straight_banking + self.curve_banking) / 2)
-            - (self.curve_banking - self.straight_banking)/2 * np.cos(4 * (s / self.length) * np.pi)
-        ) / 180
+        return (
+            np.pi
+            * (
+                ((self.straight_banking + self.curve_banking) / 2)
+                - (self.curve_banking - self.straight_banking) / 2 * np.cos(4 * (s / self.length) * np.pi)
+            )
+            / 180
+        )
 
     def _transform_xyz(self, s, d) -> Tuple[float, float, float]:
         s = s % self.length
@@ -53,37 +57,25 @@ class StadiumBase(abc.ABC):
         d_xy = d * np.cos(banking_angle)
         d_z = d * np.sin(banking_angle)
         if s < self._q_straight:
-            return (
-                s,
-                -1 * (self.radius + d_xy),
-                d_z
-            )
+            return (s, -1 * (self.radius + d_xy), d_z)
         elif s < self._q_straight + np.pi * self.radius:
             angle = (s - self._q_straight) / self.radius
             return (
                 self._q_straight + (self.radius + d_xy) * np.sin(angle),
                 -1 * (self.radius + d_xy) * np.cos(angle),
-                d_z
+                d_z,
             )
         elif s < 3 * self._q_straight + np.pi * self.radius:
-            return (
-                2 * self._q_straight + np.pi * self.radius - s,
-                self.radius + d_xy,
-                d_z
-            )
+            return (2 * self._q_straight + np.pi * self.radius - s, self.radius + d_xy, d_z)
         elif s < 3 * self._q_straight + 2 * np.pi * self.radius:
             angle = (s - (3 * self._q_straight + np.pi * self.radius)) / self.radius
             return (
                 -1 * self._q_straight - (self.radius + d_xy) * np.sin(angle),
                 (self.radius + d_xy) * np.cos(angle),
-                d_z
+                d_z,
             )
         else:
-            return (
-                s - 4 * self._q_straight - 2 * np.pi * self.radius,
-                -1 * (self.radius + d_xy),
-                d_z
-            )
+            return (s - 4 * self._q_straight - 2 * np.pi * self.radius, -1 * (self.radius + d_xy), d_z)
 
     @abc.abstractmethod
     def _init_ax(self, ax: plt.Axes):

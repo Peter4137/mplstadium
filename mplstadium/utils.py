@@ -6,6 +6,7 @@ class OlympicVelodrome2D(Stadium2D):
     """
     Wrapper class for an Olympic Velodrome in 2D.
     """
+
     def __init__(self):
         super().__init__(
             length=250,
@@ -14,11 +15,13 @@ class OlympicVelodrome2D(Stadium2D):
             straight_banking=12,
             curve_banking=45,
         )
+
 
 class OlympicVelodrome3D(Stadium3D):
     """
     Wrapper class for an Olympic Velodrome in 3D.
     """
+
     def __init__(self):
         super().__init__(
             length=250,
@@ -28,10 +31,12 @@ class OlympicVelodrome3D(Stadium3D):
             curve_banking=45,
         )
 
+
 class OutdoorAthleticsTrack2D(Stadium2D):
     """
     Wrapper class for an Outdoor Athletics Track in 2D.
     """
+
     def __init__(self):
         super().__init__(
             length=400,
@@ -40,6 +45,7 @@ class OutdoorAthleticsTrack2D(Stadium2D):
             straight_banking=0,
             curve_banking=0,
         )
+
 
 class OutdoorAthleticsTrack3D(Stadium3D):
     """
@@ -55,10 +61,12 @@ class OutdoorAthleticsTrack3D(Stadium3D):
             curve_banking=0,
         )
 
+
 class IndoorAthleticsTrack2D(Stadium2D):
     """
     Wrapper class for an Indoor Athletics Track in 2D.
     """
+
     def __init__(self):
         super().__init__(
             length=200,
@@ -68,10 +76,12 @@ class IndoorAthleticsTrack2D(Stadium2D):
             curve_banking=10,
         )
 
+
 class IndoorAthleticsTrack3D(Stadium3D):
     """
     Wrapper class for an Indoor Athletics Track in 3D.
     """
+
     def __init__(self):
         super().__init__(
             length=200,
