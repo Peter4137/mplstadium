@@ -17,9 +17,11 @@ def test_stadium3d_draw():
         width=10,
         straight_banking=10,
         curve_banking=20,
+        lane_widths=[10],
+        lane_colors=["white", "white"],
     )
 
-    stadium.draw(ax, color="blue", edgecolor="white", alpha=0.5)
+    stadium.draw(ax)
 
     assert isinstance(fig, matplotlib.figure.Figure)
     assert isinstance(ax, matplotlib.axes.Axes)
@@ -35,12 +37,15 @@ def test_stadium3d_scatter():
         width=10,
         straight_banking=10,
         curve_banking=20,
+        surface_color="blue",
+        lane_colors=["white", "white"],
+        lane_widths=[10],
     )
 
     tangential = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90]
     radial = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 
-    fig, ax = stadium.draw(color="blue", edgecolor="white", alpha=0.5)
+    fig, ax = stadium.draw()
 
     stadium.scatter(tangential, radial, s=50, c="red", alpha=1)
 
@@ -59,12 +64,15 @@ def test_stadium3d_trajectory():
         width=10,
         straight_banking=10,
         curve_banking=20,
+        surface_color="blue",
+        lane_colors=["white", "white"],
+        lane_widths=[10],
     )
 
     tangential = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90]
     radial = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 
-    fig, ax = stadium.draw(color="blue", edgecolor="white", alpha=0.5)
+    fig, ax = stadium.draw()
 
     stadium.trajectory(tangential, radial, c="red", lw=5, alpha=1)
 
@@ -73,8 +81,3 @@ def test_stadium3d_trajectory():
 
     ax.set_aspect('equal')
     return fig
-
-
-
-
-

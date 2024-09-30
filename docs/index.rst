@@ -1,5 +1,7 @@
 mplstadium documentation
 ========================
+.. automodule:: mplstadium.stadium_base
+    :members:
 
 .. automodule:: mplstadium.stadium2d
     :members:
