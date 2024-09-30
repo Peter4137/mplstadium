@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "mplstadium"
-version = "0.1.0"
+version = "0.2.0"
 description = "A python plotting library for visualisation of stadium data"
 authors = ["Peter4137 <peter.robinson4137@gmail.com>"]
 license = "MIT"

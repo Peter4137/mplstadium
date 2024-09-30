@@ -1,0 +1,28 @@
+name: Publish Python Package
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out the repository
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+
+    - name: Install dependencies
+      run: |
+        pip install poetry
+        poetry install
+
+    - name: Publish to PyPI
+      run:
+        poetry config pypi-token.pypi ${{ secrets.PYPI_API_KEY }}
+        poetry publish --build
