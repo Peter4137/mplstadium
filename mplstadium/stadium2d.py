@@ -1,4 +1,4 @@
-from typing import List, Tuple
+from typing import List, Optional, Tuple
 
 import matplotlib
 import numpy as np
@@ -22,7 +22,7 @@ class Stadium2D(StadiumBase):
         self,
         ax: plt.Axes = None,
         s_points: int = 250,
-    ) -> Tuple[plt.Figure, plt.Axes]:
+    ) -> Optional[Tuple[plt.Figure, plt.Axes]]:
         """Plot the stadium in 2D.
 
         Parameters
@@ -43,8 +43,6 @@ class Stadium2D(StadiumBase):
 
         if self._fig:
             return self._fig, self._ax
-        else:
-            return self._ax
 
     def _draw_stadium(
         self,
@@ -80,11 +78,11 @@ class Stadium2D(StadiumBase):
         for d, color in zip(lane_positions, self.lane_colors):
             line = np.array([self._transform_xyz(s, d) for s in all_s])
             self._ax.plot(
-                line[:, 0], 
-                line[:, 1], 
-                color=color, 
-                alpha=self.lane_alpha, 
-                linestyle=self.lane_linestyle, 
+                line[:, 0],
+                line[:, 1],
+                color=color,
+                alpha=self.lane_alpha,
+                linestyle=self.lane_linestyle,
                 lw=self.lane_linewidth
             )
 
@@ -93,9 +91,9 @@ class Stadium2D(StadiumBase):
         for s, color in zip(self.line_distances, self.line_colors):
             line = np.array([self._transform_xyz(s, d) for d in [0, self.width]])
             self._ax.plot(
-                line[:, 0], 
-                line[:, 1], 
-                color=color, 
+                line[:, 0],
+                line[:, 1],
+                color=color,
                 alpha=self.line_alpha,
             )
 

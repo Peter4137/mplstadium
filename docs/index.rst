@@ -9,9 +9,12 @@ mplstadium documentation
 .. automodule:: mplstadium.stadium3d
     :members:
 
+
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
+
+    utils
 
 Indices and tables
 ==================

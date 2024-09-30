@@ -1,5 +1,4 @@
 import abc
-from dataclasses import dataclass
 from typing import List, Tuple, Union
 
 import matplotlib
@@ -7,22 +6,10 @@ import numpy as np
 from matplotlib import pyplot as plt
 
 
-@dataclass
-class StadiumGeometry:
-    length: float
-    radius: float
-    width: float
-    straight_banking: float
-    curve_banking: float
-
-
-class StadiumMarkings:
-    lane_ratios: list[float]
-    line_distances: list[float]
-
-
 class StadiumBase(abc.ABC):
-    """An abstract base class to represent a stadium-shaped track and facilitate plots of and on its surface.
+    """
+    
+    An abstract base class to represent a stadium-shaped track and facilitate plots of and on its surface.
 
     Attributes:
     ----------
@@ -39,10 +26,10 @@ class StadiumBase(abc.ABC):
     lane_widths : Iterable[float] = [1]
         Optional. Widths for each lane of the stadium. Does not have to sum to the total width
     lane_colors : Iterable[str] = ["black", "black"],
-        Optional. Lane line colours, including the inner and outer lane lines. 
+        Optional. Lane line colours, including the inner and outer lane lines.
         Must have length equal to len(lane_widths) + 1
     lane_alpha : float = 1.0
-        Optional. Alpha value of the lane lines. 
+        Optional. Alpha value of the lane lines.
     lane_linestyle : str = "-"
         Optional. Linestyle of the lane lines.
     lane_linewidth : float
@@ -125,7 +112,7 @@ class StadiumBase(abc.ABC):
     ):
         def _step(s, d_xy, d_z):
             return np.heaviside(s - start, 1) * f(s, d_xy, d_z) -  np.heaviside(s - end, 1) * f(s, d_xy, d_z)
-    
+
         return _step
 
     def _banking(self, s, d) -> float:
@@ -134,10 +121,10 @@ class StadiumBase(abc.ABC):
             ((self.straight_banking + self.curve_banking) / 2)
             - (self.curve_banking - self.straight_banking)/2 * np.cos(4 * (s / self.length) * np.pi)
         ) / 180
-    
+
     def _straight_1(self, s, d_xy, d_z) -> Tuple[float, float, float]:
         return np.array([s, -1 * (self.radius + d_xy), d_z])
-    
+
     def _curve_1(self, s, d_xy, d_z) -> Tuple[float, float, float]:
         angle = (s - self._q_straight) / self.radius
         return np.array([

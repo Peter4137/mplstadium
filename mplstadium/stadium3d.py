@@ -1,4 +1,5 @@
-from typing import List
+from typing import List, Optional, Tuple
+
 import matplotlib
 import numpy as np
 from matplotlib import pyplot as plt
@@ -8,21 +9,8 @@ from .stadium_base import StadiumBase
 
 
 class Stadium3D(StadiumBase):
-    """A class to represent a stadium-shaped track and facilitate plots of and on its surface in 3D.
-
-    Attributes:
-    ----------
-    length : float
-        The length of the track.
-    radius : float
-        The radius of the track.
-    width : float
-        The width of the track.
-    straight_banking : float
-        The banking angle (deg) of the straight sections of the track.
-    curve_banking : float
-        The banking angle (deg) of the curved sections of the track.
-
+    """
+    A class to represent a stadium-shaped track and facilitate plots of and on its surface in 3D.
     """
 
     def _init_ax(self, ax: Axes3D):
@@ -35,7 +23,7 @@ class Stadium3D(StadiumBase):
         self,
         ax: plt.Axes = None,
         s_points: int = 250,
-    ) -> tuple[plt.Figure, Axes3D]:
+    ) -> Optional[Tuple[plt.Figure, Axes3D]]:
         """Plot the stadium in 3D.
 
         Parameters
@@ -44,14 +32,6 @@ class Stadium3D(StadiumBase):
             The axis to plot on.
         s_points : int
             The number of points to use in the tangential direction.
-        d_points : int
-            The number of points to use in the radial direction.
-        args: list
-            Additional positional arguments to pass to the plot
-            function.
-        kwargs: dict
-            Additional keyword arguments to pass to the plot
-            function.
 
         """
         self._init_ax(ax)
@@ -63,8 +43,6 @@ class Stadium3D(StadiumBase):
 
         if self._fig:
             return self._fig, self._ax
-        else:
-            return self._ax
 
     def _draw_stadium(
         self,
@@ -133,12 +111,12 @@ class Stadium3D(StadiumBase):
         for d, color in zip(lane_positions, self.lane_colors):
             line = np.array([self._transform_xyz(s, d) for s in all_s])
             self._ax.plot(
-                line[:, 0], 
+                line[:, 0],
                 line[:, 1],
                 line[:, 2],
-                color=color, 
-                alpha=self.lane_alpha, 
-                linestyle=self.lane_linestyle, 
+                color=color,
+                alpha=self.lane_alpha,
+                linestyle=self.lane_linestyle,
                 lw=self.lane_linewidth,
                 zorder=-1,
             )
@@ -148,10 +126,10 @@ class Stadium3D(StadiumBase):
         for s, color in zip(self.line_distances, self.line_colors):
             line = np.array([self._transform_xyz(s, d) for d in [0, self.width]])
             self._ax.plot(
-                line[:, 0], 
+                line[:, 0],
                 line[:, 1],
                 line[:, 2],
-                color=color, 
+                color=color,
                 alpha=self.line_alpha,
                 zorder=-1,
             )

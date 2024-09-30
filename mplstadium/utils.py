@@ -89,7 +89,7 @@ class IndoorAthleticsTrack2D(Stadium2D):
     """
     Wrapper class for an Indoor Athletics Track in 2D.
     """
-    
+
     def __init__(self, *args, **kwargs):
         super().__init__(
             length=200,
