@@ -31,13 +31,13 @@ def test_outdoor_athletics_track():
 
     assert track2d.length == 400
     assert track2d.radius == 36.5
-    assert track2d.width == 8
+    assert track2d.width == 10
     assert track2d.straight_banking == 0
     assert track2d.curve_banking == 0
 
     assert track3d.length == 400
     assert track3d.radius == 36.5
-    assert track3d.width == 8
+    assert track3d.width == 10
     assert track3d.straight_banking == 0
     assert track3d.curve_banking == 0
 
@@ -48,12 +48,12 @@ def test_indoor_athletics_track():
 
     assert track2d.length == 200
     assert track2d.radius == 18.5
-    assert track2d.width == 8
+    assert track2d.width == 7.5
     assert track2d.straight_banking == 0
     assert track2d.curve_banking == 10
 
     assert track3d.length == 200
     assert track3d.radius == 18.5
-    assert track3d.width == 8
+    assert track3d.width == 7.5
     assert track3d.straight_banking == 0
     assert track3d.curve_banking == 10

@@ -1,5 +1,7 @@
 mplstadium documentation
 ========================
+.. automodule:: mplstadium.stadium_base
+    :members:
 
 .. automodule:: mplstadium.stadium2d
     :members:
@@ -7,9 +9,12 @@ mplstadium documentation
 .. automodule:: mplstadium.stadium3d
     :members:
 
+
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
+
+    utils
 
 Indices and tables
 ==================
